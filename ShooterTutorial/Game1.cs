@@ -62,6 +62,8 @@ namespace ShooterTutorial
         Texture2D enemyTexture;
         List<Enemy> enemies;
 
+        // powerup
+        Texture2D powerupTexture;
         Powerup powerup;
 
         // a random number gen
@@ -93,12 +95,13 @@ namespace ShooterTutorial
 
             _weaponList = new List<Weapon>();
 
-            _weaponList.Add(new Bazooka(this, _player));
-            _weaponList.Add(new WaveWeapon(this, _player));
-            _weaponList.Add(new SinusShot(this, _player));
+           // _weaponList.Add(new Bazooka(this, _player));
+            //_weaponList.Add(new WaveWeapon(this, _player));
+            //_weaponList.Add(new SinusShot(this, _player));
             _weaponList.Add(new TripleWeaponRotateGHA(this, _player));
-            _weaponList.Add(new GravityBombing(this, _player));
-            _weaponList.Add(new CircularShoot(this, _player));
+            //_weaponList.Add(new GravityBombing(this, _player));
+           // _weaponList.Add(new CircularShoot(this, _player));
+
             _bgLayer1 = new ParallaxingBackground();
             _bgLayer2 = new ParallaxingBackground();
             _rectBackground = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
@@ -151,6 +154,9 @@ namespace ShooterTutorial
 
             // load th texture to serve as the laser.
             laserTexture = Content.Load<Texture2D>("Graphics\\laser");
+
+            // load the texture bonus
+            powerupTexture = Content.Load<Texture2D>("Graphics\\powerupGHA.png");
 
             // Load the exploision sprite strip
             explosionTexture = Content.Load<Texture2D>("Graphics\\explosion");
@@ -440,7 +446,7 @@ namespace ShooterTutorial
 
                     var weapon = _weaponList[value];
 
-                    powerup = new Powerup(weapon.GetPowerupAnimation(), position, weapon);
+                    powerup = new Powerup(weapon.GetPowerupAnimation(), new LinearMovement(position,new Vector2(-0.01f,0f),5f), weapon);
                 }
             }
 
