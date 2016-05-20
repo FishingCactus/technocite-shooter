@@ -23,11 +23,20 @@ namespace ShooterTutorial.GameObjects
         public LinearMovement(Vector2 position, Vector2 direction)
         {
             Position = position;
-  
+
             Direction = direction;
             Direction.Normalize();
 
             MoveSpeed = DEFAULT_SPEED;
+        }
+        public LinearMovement(Vector2 position, Vector2 direction, float speed)
+        {
+            Position = position;
+
+            Direction = direction;
+            Direction.Normalize();
+
+            MoveSpeed = speed;
         }
 
         public void update( GameTime gameTime )

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ShooterTutorial.GameObjects
 {
@@ -26,6 +27,27 @@ namespace ShooterTutorial.GameObjects
                 _game.AddLaser(ghaMovement.create(_player.Position, 10f, 30.0f * (float)Math.PI / 180.0f, 0));
             }
 
+        }
+
+        public override Animation GetPowerupAnimation()
+        {
+            var texture = _game.Content.Load<Texture2D>("Graphics\\powerupGHA.png");
+
+            Animation animation = new Animation();
+
+            // Init the animation with the correct 
+            // animation information
+            animation.Initialize(texture,
+                Vector2.Zero,
+                148,
+                125,
+                1,
+                30,
+                Color.White,
+                1f,
+                true);
+
+            return animation;
         }
     }
 }
